@@ -16,7 +16,6 @@ const Creat: React.FC<Props> = ({ title, setTitle, setLoading, setGetAllData, on
 
     const onFinish = async (values: any) => {
         const empdata = { title, };
-
         try {
             setLoading(true);
 
@@ -49,7 +48,7 @@ const Creat: React.FC<Props> = ({ title, setTitle, setLoading, setGetAllData, on
     return (
         <div>
             <Form
-                name="basic"
+                name="create"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
                 style={{ maxWidth: 600 }}

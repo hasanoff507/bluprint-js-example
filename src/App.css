@@ -1,13 +1,15 @@
-.App {
-  text-align: end;
-  max-width: 1440px;
-  padding: 10px;
-}
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+.container {
+  margin: 0 auto !important;
+  padding: 0 15px;
+  max-width: 1300px;
+  width: 100%;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

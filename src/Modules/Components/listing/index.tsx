@@ -3,6 +3,7 @@ import { Space, Table } from "antd";
 import { getAllType } from "../index";
 import Creat from "../Create";
 import { Button, Dialog, Classes } from "@blueprintjs/core";
+import Edit from "../Edit";
 interface Todo {
     id: number;
     title: string;
@@ -19,7 +20,8 @@ const Listings: React.FC<Props> = ({ getAllData, setGetAllData }: Props) => {
     const [secondModalOpen, setSecondModalOpen] = useState(false);
     const [id, setId] = useState<number>()
     const [title, setTitle] = useState("")
-    
+
+
     useEffect(() => {
         setLoading(true);
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -64,9 +66,12 @@ const Listings: React.FC<Props> = ({ getAllData, setGetAllData }: Props) => {
     };
 
     const handleEdit = (id: number) => {
-
+        setSecondModalOpen(true)
+        setId(id)
     }
-
+    const handleEditHide = () => {
+        setSecondModalOpen(false)
+    }
     const onShowHandleClick = () => {
         setFirstModalOpen(true);
     }
@@ -92,7 +97,11 @@ const Listings: React.FC<Props> = ({ getAllData, setGetAllData }: Props) => {
                 <div >
                     <Space>
                         <Button style={{ border: 'none', background: 'unset', color: 'orange' }} icon="edit" onClick={() => handleEdit(record.id)} >
-
+                            <Dialog onClose={handleEditHide} isOpen={secondModalOpen} title="Edit Post">
+                                <div className={Classes.DIALOG_BODY}>
+                                    <Edit id={id} title={title} setTitle={setTitle} loading={loading} setLoading={setLoading} setGetAllData={setGetAllData} handleEditHide={handleEditHide} />
+                                </div>
+                            </Dialog>
                         </Button>
                         <Button onClick={() => handleDelete(record.id)} icon="trash" intent="danger" />
                     </Space>
