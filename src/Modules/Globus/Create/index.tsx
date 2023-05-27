@@ -1,15 +1,23 @@
 import React from "react";
-import { Button, Dialog, Intent } from "@blueprintjs/core";
-
+import {  Dialog, Intent } from "@blueprintjs/core";
+import { Button, Checkbox, Form, Input } from 'antd';
 
 type Props = {
-    isOpen:boolean;
+    isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    handleClose:any
+    handleClose: any
+    handleChange: React.Dispatch<React.SetStateAction<any>>
 };
 
-const Create: React.FC<Props> = ({isOpen,setIsOpen,handleClose }: Props) => {
+const Create: React.FC<Props> = ({ isOpen, setIsOpen, handleClose, handleChange }: Props) => {
 
+    const onFinish = (values: any) => {
+        console.log('Success:', values);
+    };
+
+    const onFinishFailed = (errorInfo: any) => {
+        console.log('Failed:', errorInfo);
+    };
 
     return (
         <div>
@@ -18,17 +26,44 @@ const Create: React.FC<Props> = ({isOpen,setIsOpen,handleClose }: Props) => {
                 onClose={handleClose}
                 title="Create a new project"
                 icon="plus"
-                // intent={Intent.PRIMARY}
+            // intent={Intent.PRIMARY}
             >
-                <div className="bp3-dialog-body">
-                    <p>This is an example dialog created with Blueprint.js!</p>
-                    <p>You can add any content you like.</p>
-                </div>
-                <div className="bp3-dialog-footer">
-                    <div className="bp3-dialog-footer-actions">
-                        <Button onClick={handleClose}>Close</Button>
-                    </div>
-                </div>
+                <Form
+                    name="basic"
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    style={{ maxWidth: 600 }}
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                >
+                    <Form.Item
+                        label="Username"
+                        name="username"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+
+                    <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
             </Dialog>
         </div>
     );

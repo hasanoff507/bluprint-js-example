@@ -3,12 +3,7 @@
   height: 40vmin;
   pointer-events: none;
 }
-.container {
-  margin: 0 auto !important;
-  padding: 0 15px;
-  max-width: 1300px;
-  width: 100%;
-}
+
 
 
 @media (prefers-reduced-motion: no-preference) {

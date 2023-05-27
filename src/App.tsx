@@ -4,7 +4,7 @@ import Components from './Modules/Components';
 import Globus from './Modules/Globus';
 function App() {
   return (
-    <div className="container">
+    <div className="">
      <Globus/>
     </div>
   );

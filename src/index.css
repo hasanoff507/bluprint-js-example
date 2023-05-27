@@ -16,3 +16,13 @@ code {
 h1 {
   margin-block-start: 0 !important;
 }
+h5 {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+}
+.bp4-button-text{
+  display: flex;
+align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
